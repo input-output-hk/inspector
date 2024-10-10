@@ -27,7 +27,7 @@ library
   build-depends:
       base
     , basement >=0.0.7
-    , cryptonite
+    , crypton
     , foundation >=0.0.20
     , memory >=0.14.15
   exposed-modules:
@@ -57,7 +57,7 @@ executable example
   build-depends:
       base
     , basement >=0.0.7
-    , cryptonite
+    , crypton
     , foundation >=0.0.20
     , inspector
     , memory >=0.14.15
