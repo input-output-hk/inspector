@@ -30,7 +30,7 @@ data Type
     | String
     | Array !Array
     | Object !Object
-  deriving (Show, Eq, Ord, Typeable)
+  deriving (Show, Eq, Ord)
 
 isByteArray :: Type -> Bool
 isByteArray (Array (SizedArray Unsigned8 _)) = True
@@ -45,10 +45,10 @@ innerType _ = undefined
 data Array
     = SizedArray   !Type !Word64
     | UnsizedArray !Type
-  deriving (Show, Eq, Ord, Typeable)
+  deriving (Show, Eq, Ord)
 
 newtype Object = ObjectDef [(Key, Type)]
-  deriving (Show, Eq, Ord, Typeable, Semigroup, Monoid, Collection, Sequential, IndexedCollection, Foldable)
+  deriving (Show, Eq, Ord, Semigroup, Monoid, Collection, Sequential, IndexedCollection, Foldable)
 
 type instance Element Object = (Key, Type)
 

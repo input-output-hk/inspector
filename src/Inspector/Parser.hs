@@ -35,7 +35,7 @@ import           Foundation.Monad.State
 import           Control.Applicative (Alternative(..))
 
 newtype S = S { lineParsed :: Word }
-  deriving (Typeable, Show, Eq, Ord)
+  deriving (Show, Eq, Ord)
 
 defaultS :: S
 defaultS = S 0

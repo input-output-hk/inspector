@@ -44,7 +44,6 @@ type Golden golden = (HasMethod golden, HasPath golden)
 
 
 data (i :: k) :> o
-  deriving (Typeable)
 infixr 9 :>
 
 -- | Type level alias to describe what to retrive from the test vector
@@ -57,7 +56,6 @@ infixr 9 :>
 -- @
 --
 data Payload  (key :: Symbol) value
-  deriving (Typeable)
 
 data PathParameter (key :: Symbol) (n :: Nat)
 

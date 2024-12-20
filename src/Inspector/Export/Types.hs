@@ -56,7 +56,7 @@ data OutputType
     = TestVectors
     | Markdown
     | Rust
-  deriving (Show, Eq, Ord, Enum, Bounded, Typeable)
+  deriving (Show, Eq, Ord, Enum, Bounded)
 
 reportError :: String -> Value -> Either String a
 reportError desc it = Left $ case it of

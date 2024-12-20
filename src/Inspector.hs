@@ -93,7 +93,7 @@ defaultTest suites = do
 data InspectorOption
     = RootDir LString
     | GenStdout
-  deriving (Show, Eq, Ord, Typeable)
+  deriving (Show, Eq, Ord)
 
 options :: [OptDescr InspectorOption]
 options =

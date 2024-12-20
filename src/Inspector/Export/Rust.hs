@@ -114,7 +114,7 @@ defineType l = do
         emit "," >> unindent >> newline
 
 newtype TypeName = TypeName String
-  deriving (Show, Eq, Ord, Typeable)
+  deriving (Show, Eq, Ord)
 instance IsString TypeName where
     fromString str = fromMaybe (error $ "Invalid TypeName" <> show str) (mkTypeName str)
 
@@ -128,10 +128,10 @@ mkTypeName str = if isOk then Just (TypeName $ fromList str) else Nothing
 data RustType
     = CompatibleType Type
     | DefinedType TypeName
-  deriving (Show, Ord, Eq, Typeable)
+  deriving (Show, Ord, Eq)
 
 newtype RustObject = RustObject [(Key, RustType)]
-    deriving (Show, Eq, Ord, Typeable, Semigroup, Monoid, Collection, Sequential, IndexedCollection, Foldable)
+    deriving (Show, Eq, Ord, Semigroup, Monoid, Collection, Sequential, IndexedCollection, Foldable)
 
 type instance Element RustObject = (Key, RustType)
 
@@ -188,7 +188,7 @@ convertTestVector tv = forM (snd <$> toList tv) $ \entry -> do
     pure (entryKey entry, fromMaybe undefined $ entryInput entry, entryDoc entry, rt)
 
 newtype DefinedTypes = DefinedTypes [(TypeName, RustObject)]
-  deriving (Show, Eq, Ord, Typeable, Semigroup, Monoid, Collection, Sequential, IndexedCollection, Foldable)
+  deriving (Show, Eq, Ord, Semigroup, Monoid, Collection, Sequential, IndexedCollection, Foldable)
 type instance Element DefinedTypes = (TypeName, RustObject)
 instance KeyedCollection DefinedTypes where
     type Key DefinedTypes   = TypeName

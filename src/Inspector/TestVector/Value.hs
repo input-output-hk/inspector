@@ -43,7 +43,7 @@ data Value
     | String F.String
     | Array !Array
     | Object !Object
-  deriving (Show, Eq, Ord, Typeable)
+  deriving (Show, Eq, Ord)
 instance Arbitrary Value where
     arbitrary = genValue defaultDepth
 
@@ -71,7 +71,7 @@ valueEq _            _            = False
 -- the only contraint is that the value must be of the same type.
 --
 newtype Array = ArrayDef [Value]
-  deriving (Show, Eq, Ord, Typeable, Semigroup, Monoid, Collection, Sequential, IndexedCollection, Foldable)
+  deriving (Show, Eq, Ord, Semigroup, Monoid, Collection, Sequential, IndexedCollection, Foldable)
 type instance Element Array = Value
 instance IsList Array where
     type Item Array = Value
@@ -94,7 +94,7 @@ arrayEq :: Array -> Array -> Bool
 arrayEq (ArrayDef l) (ArrayDef r) = and $ fmap (uncurry valueEq) $ zip l r
 
 newtype Object = ObjectDef [(Key, Value)]
-  deriving (Show, Eq, Ord, Typeable, Semigroup, Monoid, Collection, Sequential, IndexedCollection, Foldable)
+  deriving (Show, Eq, Ord, Semigroup, Monoid, Collection, Sequential, IndexedCollection, Foldable)
 instance Arbitrary Object where
     arbitrary = genObject defaultDepth
 

@@ -43,17 +43,17 @@ import Inspector.TestVector.Value (Value)
 
 data Mode = Generate !OutputType
           | GoldenTest
-  deriving (Show, Eq, Ord, Typeable)
+  deriving (Show, Eq, Ord)
 
 data Config = Config
     { getMode :: !Mode
     , getRoot :: !FilePath
     , getStdout :: !Bool
     }
-  deriving (Show, Eq, Typeable)
+  deriving (Show, Eq)
 
 newtype GoldenMT st m a = GoldenM { runGoldenM_ :: StateT st (ReaderT Config m) a }
-  deriving (Typeable, Functor, Applicative, Monad, MonadThrow, MonadCatch, MonadIO)
+  deriving (Functor, Applicative, Monad, MonadThrow, MonadCatch, MonadIO)
 instance MonadTrans (GoldenMT st) where
     lift = GoldenM . lift . lift
 instance Monad m => MonadState (GoldenMT st m) where
@@ -84,7 +84,7 @@ data Metadata = Metadata
     { metaDescription  :: !String
     , goldenTestFailed :: !Bool
     }
-  deriving (Show, Eq, Typeable)
+  deriving (Show, Eq)
 instance Semigroup Metadata where
     (<>) (Metadata d1 t1) (Metadata d2 t2) = Metadata (d1 <> d2) (t1 && t2)
 

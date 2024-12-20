@@ -39,7 +39,7 @@ data Entry a = Entry
     , entryDoc   :: !(Maybe F.String)
     , entryExtra :: !a
     }
-  deriving (Show, Eq, Ord, Typeable)
+  deriving (Show, Eq, Ord)
 
 entryParser :: Parser (Entry ())
 entryParser = do
@@ -60,7 +60,7 @@ entryBuilder Entry{..} = do
     newline
 
 newtype TestVector a = TestVector [(Key, Entry a)]
-  deriving (Show, Eq, Ord, Typeable, Semigroup, Monoid, Collection, Sequential, IndexedCollection, Foldable)
+  deriving (Show, Eq, Ord, Semigroup, Monoid, Collection, Sequential, IndexedCollection, Foldable)
 
 type instance Element (TestVector a) = (Key, Entry a)
 

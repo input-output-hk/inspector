@@ -30,7 +30,7 @@ import qualified Inspector.Parser as Parser
 -- Valid key are of the form: `[a-z][a-zA-Z0-9_]*`
 --
 newtype Key = Key { keyToString :: String }
-  deriving (Show, Eq, Ord, Typeable, NormalForm)
+  deriving (Show, Eq, Ord, NormalForm)
 instance IsString Key where
     fromString str = maybe (error $ "invalid Key... " <> show str) id $ mkKey $ fromList str
 
